@@ -15,11 +15,17 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+/*
+Route::middleware('web')
+    ->namespace('App\Http\Controllers')
+    ->group(function () {
+        Auth::routes();
+    });
+*/
+
 
 // Route::get('/home', 'HomeController@index')->name('home');
 
 Auth::routes();
-
-
 
 

@@ -14,7 +14,6 @@ use Illuminate\Http\Request;
 */
 
 
-// you may use the  apiResource method to automatically exclude these two routes (edit, create)
 
 /*
 Route::middleware('web')
@@ -24,12 +23,16 @@ Route::middleware('web')
     });
 */
 
-// Auth::routes();
+/// Auth::routes();
 
+
+// you may use the  apiResource method to automatically exclude these two routes (edit, create)
+
+// 'except' not working
 
 Route::group(['middleware' => 'auth:api'], function () {
     Route::apiResource('posts', 'PostController');
-    Route::apiResource('posts.comments', 'CommentController', ['except' => ['update', 'show']]);
+    Route::apiResource('posts.comments', 'CommentController', ['only' => ['index', 'destroy', 'store']]);
 
 });
 
