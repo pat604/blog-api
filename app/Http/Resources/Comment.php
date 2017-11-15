@@ -24,12 +24,8 @@ class Comment extends Resource
     {
         return [
             'id' => $this->id,
-            'slug' => $this->slug,
-            // ?
             'author' => new User($this->author),
-            'title' => $this->title,
             'body' => $this->body,
-            'comments' => $this->collection($this->comments),
             'created_at' => Carbon::parse($this->created_at),
             'updated_at' => Carbon::parse($this->updated_at)
         ];

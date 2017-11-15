@@ -24,7 +24,7 @@ Route::middleware('web')
 */
 
 
-// Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/home', 'PostController@index')->name('home');
 
 Auth::routes();
 

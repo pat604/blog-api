@@ -18,10 +18,15 @@ class Post extends Resource
     {
         return [
             'id' => $this->id,
-            'author' => new User($this->author),        // ??
+            'slug' => $this->slug,
+            // az author miatt kell a with():  return PostResource::collection(Post::with(['author'])
+            'author' => new User($this->author),
+            'title' => $this->title,
             'body' => $this->body,
+            'comments' => Comment::collection($this->comments),
             'created_at' => Carbon::parse($this->created_at),
             'updated_at' => Carbon::parse($this->updated_at)
+
         ];
     }
 }
