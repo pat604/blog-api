@@ -14,13 +14,13 @@ class PostController extends Controller
     public function index()
     {
         // return PostResource::collection(Post::all());
-        return PostResource::collection(Post::with(['author']));
+        return PostResource::collection(Post::with(['author'])->get());
     }
 
     // route model binding
     public function show(Post $post)
     {
-        return new PostResource($post);
+        return new PostResource($post->load(['author', 'comments']));
     }
 
     public function store(StorePost $request)
@@ -30,13 +30,13 @@ class PostController extends Controller
         $post->title = request('title');
         $post->body = request('body');
         $post->slug = $post->createSlug();
-        $post->author = request('user_id');     // ?
+        $post->author = $request->user();
 
         $post->save();
         // auth()->user()->posts()->save();
 
         // created
-        return response(201);
+        return (new PostResource($post->load(['author'])))->response()->setStatusCode(201);
     }
 
     public function update(UpdatePost $request, Post $post)

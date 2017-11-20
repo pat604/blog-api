@@ -24,7 +24,7 @@ class Comment extends Resource
     {
         return [
             'id' => $this->id,
-            'author' => new User($this->author),
+            'author' => $this->author,
             'body' => $this->body,
             'created_at' => Carbon::parse($this->created_at),
             'updated_at' => Carbon::parse($this->updated_at)

@@ -34,4 +34,20 @@ Route::group(['middleware' => 'auth:api'], function () {
 
 });
 
+/* IMPLICIT GRANT TOKEN:
+kell hozzá a frontendes callback uri
+
+Route::get('/redirect', function () {
+    $query = http_build_query([
+        'client_id' => 3,
+        'redirect_uri' => 'http://example.com/callback',
+        'response_type' => 'token',
+        'scope' => '',
+    ]);
+
+    return redirect('http://your-app.com/oauth/authorize?'.$query);
+});
+
+*/
+
 

@@ -8,7 +8,7 @@ class Post extends Model
 {
     public function author()
     {
-        // user_id foreign keyt keresne...
+        // methodname_id foreign key-t keres
         return $this->belongsTo(User::class, 'author_id');
     }
 
