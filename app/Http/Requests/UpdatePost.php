@@ -16,6 +16,9 @@ class UpdatePost extends FormRequest
         $post = $this->route('post');
 
         return $this->user()->id == $post->author->id;
+
+        // return true;
+        // ERIK: return $post && $this->user()->can('update', $post);
     }
 
     /**

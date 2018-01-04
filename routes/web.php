@@ -15,6 +15,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Auth::routes();
+
 /*
 Route::middleware('web')
     ->namespace('App\Http\Controllers')
@@ -24,8 +26,8 @@ Route::middleware('web')
 */
 
 
-Route::get('/home', 'PostController@index')->name('home');
+// Route::get('/home', 'PostController@index')->name('home');
 
-Auth::routes();
+
 
 

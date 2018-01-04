@@ -13,15 +13,17 @@ class CreatePostsTable extends Migration
      */
     public function up()
     {
+        // author_id rossz ötlet volt, nem találja...p
+
         Schema::create('posts', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('author_id')->unsigned();
+            $table->integer('user_id')->unsigned();
             $table->string('slug')->unique();
             $table->string('title');
             $table->text('body');
             $table->timestamps();
 
-            $table->foreign('author_id')->references('id')->on('users');
+            $table->foreign('user_id')->references('id')->on('users');
         });
     }
 

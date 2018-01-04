@@ -25,8 +25,10 @@ class PostController extends Controller
 
     public function store(StorePost $request)
     {
+        /* SAJÁT
 
         $post = new Post;
+
         $post->title = request('title');
         $post->body = request('body');
         $post->slug = $post->createSlug();
@@ -37,7 +39,22 @@ class PostController extends Controller
 
         // created
         return (new PostResource($post->load(['author'])))->response()->setStatusCode(201);
-    }
+
+        */
+
+
+        // ERIK
+
+        $post = new Post();
+        $post->title = $request->input('title');
+        $post->body = $request->input('body');
+        $post->slug = $post->createSlug();
+
+        $request->user()->posts()->save($post);
+
+        return new PostResource($post->load(['author']));
+
+        }
 
     public function update(UpdatePost $request, Post $post)
     {
@@ -48,11 +65,12 @@ class PostController extends Controller
 
         $newPost->save();
 
-        return response(200);
+        return (new PostResource($newPost->load(['author'])))->response()->setStatusCode(201);
     }
 
     public function destroy(DeletePost $request, Post $post)
     {
+        $post->comments()->delete();
         $post->delete();
 
         return response(200);

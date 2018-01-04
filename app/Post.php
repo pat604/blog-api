@@ -9,7 +9,7 @@ class Post extends Model
     public function author()
     {
         // methodname_id foreign key-t keres
-        return $this->belongsTo(User::class, 'author_id');
+        return $this->belongsTo(User::class, 'user_id');
     }
 
     public function comments()
@@ -19,7 +19,8 @@ class Post extends Model
 
     public function createSlug()
     {
-        $slug = $this->title . "-" . $this->created_at->toDateTimeString();
+        $slug = $this->title . "-" . time();
         return $slug;
     }
+
 }

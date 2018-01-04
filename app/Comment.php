@@ -14,7 +14,7 @@ class Comment extends Model
     public function author()
     {
         // user_id foreign keyt keresne...
-        return $this->belongsTo(User::class,  'author_id');
+        return $this->belongsTo(User::class,  'user_id');
     }
 
 }

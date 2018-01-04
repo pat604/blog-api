@@ -15,7 +15,8 @@ class DeleteComment extends FormRequest
     {
         $comment = $this->route('comment');
 
-        return $this->user()->id == $comment->author->id;
+        //return $this->user()->id == $comment->author->id;
+        return true;
     }
 
     /**

@@ -18,8 +18,10 @@ class DeletePost extends FormRequest
         // vhogy el kell érni a Requestben kapott Postot
         $post = $this->route('post');
 
-        // $post->author is elég?
         return $this->user()->id == $post->author->id;
+
+        // ERIK: return $post && $this->user()->can('delete', $post);
+        // return true;
     }
 
     /**

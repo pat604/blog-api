@@ -27,27 +27,11 @@ Route::middleware('web')
 // 'except' not working
 
 
-Route::group(['middleware' => 'auth:api'], function () {
+Route::group([
+    'middleware' => 'auth:api'
+    ] ,function () {
     // Route::get('/', 'PostController@index')->name('home');
     Route::apiResource('posts', 'PostController');
     Route::apiResource('posts.comments', 'CommentController', ['only' => ['index', 'destroy', 'store']]);
 
 });
-
-/* IMPLICIT GRANT TOKEN:
-kell hozzá a frontendes callback uri
-
-Route::get('/redirect', function () {
-    $query = http_build_query([
-        'client_id' => 3,
-        'redirect_uri' => 'http://example.com/callback',
-        'response_type' => 'token',
-        'scope' => '',
-    ]);
-
-    return redirect('http://your-app.com/oauth/authorize?'.$query);
-});
-
-*/
-
-
